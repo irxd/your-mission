@@ -68,16 +68,29 @@ h1 {
   position: absolute;
   left: 0;
   top: 50%;
-  width: 100%;
+  width: 0;
   height: 2px;
   background-color: currentColor;
   z-index: 1;
+  transition: width 0.3s ease-out;
+}
+
+.main-task.completed::after,
+.secondary-task.completed::after {
+  width: 100%;
 }
 
 .main-task,
 .secondary-task {
   position: relative;
   cursor: pointer;
+  animation: slideIn 0.3s ease-out;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.main-task.removing,
+.secondary-task.removing {
+  animation: slideOut 0.3s ease-in forwards;
 }
 
 .delete-button {
@@ -154,4 +167,26 @@ h1 {
   
   font-family: 'Oranienbaum', serif;
   font-size: 24px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }

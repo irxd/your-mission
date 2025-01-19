@@ -44,13 +44,22 @@ class TaskManager {
     }
 
     deleteTask(isMain, index) {
-        if (isMain) {
-            this.tasks.mainTask = { text: null, completed: false };
-        } else {
-            this.tasks.secondaryTasks.splice(index, 1);
-        }
-        this.saveTasks();
-        this.renderTasks();
+        const taskElement = isMain ? 
+            this.tasksContainer.querySelector('.main-task') :
+            this.tasksContainer.querySelectorAll('.secondary-task')[index];
+        
+        taskElement.classList.add('removing');
+        
+        // Wait for animation to complete before removing
+        setTimeout(() => {
+            if (isMain) {
+                this.tasks.mainTask = { text: null, completed: false };
+            } else {
+                this.tasks.secondaryTasks.splice(index, 1);
+            }
+            this.saveTasks();
+            this.renderTasks();
+        }, 300); // Match animation duration
     }
 
     renderTasks() {
@@ -72,6 +81,8 @@ class TaskManager {
             mainTaskDiv.appendChild(deleteButton);
             mainTaskDiv.addEventListener('click', () => this.toggleTaskCompletion(true, 0));
             this.tasksContainer.appendChild(mainTaskDiv);
+            // Force reflow to trigger animation
+            mainTaskDiv.offsetHeight;
         }
 
         this.tasks.secondaryTasks.forEach((task, index) => {
@@ -90,6 +101,8 @@ class TaskManager {
             taskDiv.appendChild(deleteButton);
             taskDiv.addEventListener('click', () => this.toggleTaskCompletion(false, index));
             this.tasksContainer.appendChild(taskDiv);
+            // Force reflow to trigger animation
+            taskDiv.offsetHeight;
         });
     }
 

@@ -4,7 +4,8 @@ class TaskManager {
         this.form = document.getElementById('task-form');
         this.tasksContainer = document.getElementById('tasks-container');
         this.taskNumber = document.querySelector('.task-number');
-        this.updateTaskNumber(); // Add this line to initialize task number
+        this.toggleButton = document.getElementById('toggle-form');
+        this.updateTaskNumber();
         this.setupEventListeners();
         this.renderTasks();
     }
@@ -42,6 +43,16 @@ class TaskManager {
         this.renderTasks();
     }
 
+    deleteTask(isMain, index) {
+        if (isMain) {
+            this.tasks.mainTask = { text: null, completed: false };
+        } else {
+            this.tasks.secondaryTasks.splice(index, 1);
+        }
+        this.saveTasks();
+        this.renderTasks();
+    }
+
     renderTasks() {
         this.tasksContainer.innerHTML = '';
         
@@ -49,6 +60,16 @@ class TaskManager {
             const mainTaskDiv = document.createElement('div');
             mainTaskDiv.className = `main-task${this.tasks.mainTask.completed ? ' completed' : ''}`;
             mainTaskDiv.textContent = this.tasks.mainTask.text;
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-button';
+            deleteButton.textContent = '-';
+            deleteButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.deleteTask(true, 0);
+            });
+            
+            mainTaskDiv.appendChild(deleteButton);
             mainTaskDiv.addEventListener('click', () => this.toggleTaskCompletion(true, 0));
             this.tasksContainer.appendChild(mainTaskDiv);
         }
@@ -57,6 +78,16 @@ class TaskManager {
             const taskDiv = document.createElement('div');
             taskDiv.className = `secondary-task${task.completed ? ' completed' : ''}`;
             taskDiv.textContent = task.text;
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-button';
+            deleteButton.textContent = '-';
+            deleteButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.deleteTask(false, index);
+            });
+            
+            taskDiv.appendChild(deleteButton);
             taskDiv.addEventListener('click', () => this.toggleTaskCompletion(false, index));
             this.tasksContainer.appendChild(taskDiv);
         });
@@ -78,7 +109,15 @@ class TaskManager {
             if (input.value.trim()) {
                 this.addTask(input.value.trim(), isMain);
                 input.value = '';
+                this.form.classList.add('hidden'); // Hide form after submission
             }
+        });
+
+        this.toggleButton.addEventListener('click', () => {
+            this.form.classList.toggle('hidden');
+            this.toggleButton.textContent = this.form.classList.contains('hidden') 
+                ? '+ New Mission' 
+                : '- Close';
         });
     }
 }

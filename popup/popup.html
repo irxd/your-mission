@@ -2,17 +2,26 @@
   <head>
     <link rel="stylesheet" href="popup.css">
     <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Purple+Purse&display=swap" rel="stylesheet">
+    <script src="popup.js" defer></script>
   </head>
   <body>
     <div class="container">
       <img src="/images/mission.png" alt="mission" width="338.5px" height="25px">
       <div class="task-container">
-        <div>Your current task: </div>
-        <div class="task-number">2</div>
+        <div>Your remaining mission: </div>
+        <div class="task-number"></div>
       </div>
       <img src="/images/line.png" alt="mission" width="359px" height="5px">
-      <div class="main-task">Thwart the necromancer's schemes</div>
-      <div class="secondary-task">Destroy the crystal</div>
+      <div id="tasks-container">
+        <!-- Tasks will be dynamically inserted here -->
+      </div>
+      <form id="task-form" class="task-form">
+        <input type="text" id="task-input" placeholder="Enter new task">
+        <label>
+          <input type="checkbox" id="is-main-task"> Main mission
+        </label>
+        <button type="submit">Add Mission</button>
+      </form>
     </div>
   </body>
 </html>

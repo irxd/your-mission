@@ -1,10 +1,10 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "Your Mission",
+  "description": "Your Mission is simple: Get the job done",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
     "default_popup": "popup/popup.html",
-    "default_icon": "icon.png"
+    "default_icon": "images/icon.png"
   }
 }

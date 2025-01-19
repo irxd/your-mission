@@ -2,12 +2,57 @@ body {
   background-color: black;
   color: white;
   min-width: 200px;
-  max-width: 400px;
+  /* max-width: 400px; */
   width: max-content;
   margin: 0;
   padding: 2rem;
+  text-align: right;
+  font-family: 'Oranienbaum', serif;
+  font-size: 24px;
 }
 
 h1 {
   margin-bottom: 0;
+}
+
+.container {
+  text-align: right;
+}
+
+.task-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 8px;
+  margin-right: 48px;
+}
+
+.task-number {
+  font-family: 'Purple Purse', cursive;
+  font-size: 48px;
+  margin-bottom: -12px;
+}
+
+.main-task {
+  background-color: #D84B5B;
+  padding-right: 48px;
+  padding-left: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  clip-path: polygon(20px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+  width: max-content;
+  margin-left: auto;
+}
+
+.secondary-task {
+  background-color: #FFFFFF;
+  padding-right: 48px;
+  padding-left: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  clip-path: polygon(20px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+  color: black;
+  width: max-content;
+  margin-left: auto;
 }

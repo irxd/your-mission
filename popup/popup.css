@@ -1,0 +1,13 @@
+body {
+  background-color: black;
+  color: white;
+  min-width: 200px;
+  max-width: 400px;
+  width: max-content;
+  margin: 0;
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 0;
+}

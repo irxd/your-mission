@@ -1,6 +1,6 @@
 {
   "name": "Your Mission",
-  "description": "Your Mission is simple: Get the job done",
+  "description": "A productivity extension that helps you stay focused and organized by breaking down complex tasks into manageable missions. Set goals, track progress, and complete your objectives one step at a time.",
   "version": "1.0",
   "manifest_version": 3,
   "action": {

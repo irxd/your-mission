@@ -2,6 +2,10 @@
 
 A simple task management inspired by Metaphor: ReFantazio mission ui
 
+## Preview
+![Screenshot 2025-01-19 at 15 41 50](https://github.com/user-attachments/assets/aa4ed00a-cbb7-4dd5-ada8-c4d4d269ef22)
+
+
 ## Features
 
 - Track main and secondary tasks

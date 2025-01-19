@@ -71,6 +71,7 @@ h1 {
   width: 100%;
   height: 2px;
   background-color: currentColor;
+  z-index: 1;
 }
 
 .main-task,
@@ -92,6 +93,16 @@ h1 {
   opacity: 0;
   transition: opacity 0.2s;
   padding: 0 4px;
+  z-index: 2;
+  font-family: 'Oranienbaum', serif;
+}
+
+.main-task .delete-button {
+  color: #000000;
+}
+
+.secondary-task .delete-button {
+  color: #D84B5B;
 }
 
 .main-task:hover .delete-button,
@@ -112,6 +123,8 @@ h1 {
   border: 1px solid #666;
   color: white;
   padding: 8px;
+  font-family: 'Oranienbaum', serif;
+  font-size: 24px;
 }
 
 .task-form button {
@@ -120,6 +133,8 @@ h1 {
   border: none;
   padding: 8px;
   cursor: pointer;
+  font-family: 'Oranienbaum', serif;
+  font-size: 24px;
 }
 
 .hidden {
@@ -127,11 +142,15 @@ h1 {
 }
 
 .toggle-form-button {
-  background: #D84B5B;
+  background: transparent;
   color: white;
-  border: none;
-  padding: 8px;
+  border: 1px solid black;
+  padding: 0;
   cursor: pointer;
   margin-top: 16px;
-  width: 100%;
+  width: max-content;
+  margin-left: auto;
+  
+  font-family: 'Oranienbaum', serif;
+  font-size: 24px;
 }

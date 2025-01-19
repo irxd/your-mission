@@ -63,7 +63,7 @@ class TaskManager {
             
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-button';
-            deleteButton.textContent = '-';
+            deleteButton.textContent = 'X';
             deleteButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 this.deleteTask(true, 0);
@@ -81,7 +81,7 @@ class TaskManager {
             
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-button';
-            deleteButton.textContent = '-';
+            deleteButton.textContent = 'X';
             deleteButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 this.deleteTask(false, index);
@@ -104,12 +104,12 @@ class TaskManager {
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             const input = document.getElementById('task-input');
-            const isMain = document.getElementById('is-main-task').checked;
+            const isMainCheckbox = document.getElementById('is-main-task');
             
             if (input.value.trim()) {
-                this.addTask(input.value.trim(), isMain);
+                this.addTask(input.value.trim(), isMainCheckbox.checked);
                 input.value = '';
-                this.form.classList.add('hidden'); // Hide form after submission
+                isMainCheckbox.checked = false;
             }
         });
 
@@ -117,7 +117,7 @@ class TaskManager {
             this.form.classList.toggle('hidden');
             this.toggleButton.textContent = this.form.classList.contains('hidden') 
                 ? '+ New Mission' 
-                : '- Close';
+                : 'Close';
         });
     }
 }

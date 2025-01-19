@@ -2,7 +2,6 @@ body {
   background-color: black;
   color: white;
   min-width: 200px;
-  /* max-width: 400px; */
   width: max-content;
   margin: 0;
   padding: 2rem;
@@ -25,7 +24,7 @@ h1 {
   justify-content: flex-end;
   align-items: flex-end;
   gap: 8px;
-  margin-right: 48px;
+  margin-right: 40px;
 }
 
 .task-number {
@@ -36,7 +35,7 @@ h1 {
 
 .main-task {
   background-color: #D84B5B;
-  padding-right: 48px;
+  padding-right: 42px;
   padding-left: 20px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -47,7 +46,7 @@ h1 {
 
 .secondary-task {
   background-color: #FFFFFF;
-  padding-right: 48px;
+  padding-right: 42px;
   padding-left: 20px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -55,4 +54,5 @@ h1 {
   color: black;
   width: max-content;
   margin-left: auto;
+  margin-top: 4px;
 }

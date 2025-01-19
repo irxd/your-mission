@@ -1,6 +1,6 @@
 {
   "name": "Your Mission",
-  "description": "A productivity extension that breaks down complex tasks into manageable missions. Track your progress and achieve goals step by step.",
+  "description": "Productivity extension that breaks down complex tasks into manageable missions. Track your progress and achieve goals step by step.",
   "version": "1.0",
   "manifest_version": 3,
   "action": {

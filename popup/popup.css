@@ -29,9 +29,9 @@ h1 {
 }
 
 .task-number {
-  font-family: 'Purple Purse', cursive;
+  font-family: 'Gloock', cursive;
   font-size: 48px;
-  margin-bottom: -12px;
+  margin-bottom: -6px;
 }
 
 .main-task {
@@ -61,6 +61,8 @@ h1 {
 .main-task.completed,
 .secondary-task.completed {
   text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  opacity: 0.7;
 }
 
 .main-task,

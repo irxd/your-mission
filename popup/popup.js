@@ -129,7 +129,7 @@ class TaskManager {
         this.toggleButton.addEventListener('click', () => {
             this.form.classList.toggle('hidden');
             this.toggleButton.textContent = this.form.classList.contains('hidden') 
-                ? '+ New Mission' 
+                ? '+ New' 
                 : 'Close';
         });
     }

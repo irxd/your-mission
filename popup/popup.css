@@ -2,6 +2,7 @@ body {
   background-color: black;
   color: white;
   min-width: 200px;
+  min-height: 200px;
   width: max-content;
   margin: 0;
   padding: 2rem;
@@ -105,26 +106,84 @@ h1 {
   opacity: 1;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
 .task-form {
-  margin-top: 16px;
+  background: #111;
+  padding: 1rem;
+  border: 1px solid #333;
+  margin: 1rem;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  transform: translateY(20px);
+  transition: transform 0.3s, opacity 0.3s;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  text-align: left;
-  margin: 0;
-  max-height: 200px;
-  opacity: 1;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+  gap: 0.5rem;
 }
 
 .task-form input[type="text"] {
+  width: 100%;
   background: #333;
   border: 1px solid #666;
   color: white;
-  padding: 8px;
+  padding: 12px;
   font-family: 'Oranienbaum', serif;
   font-size: 24px;
+  box-sizing: border-box;
+}
+
+.task-form label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.task-form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #D84B5B;
+}
+
+.task-form button[type="submit"] {
+  width: 100%;
+  background: #D84B5B;
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-family: 'Oranienbaum', serif;
+  font-size: 24px;
+  transition: background-color 0.2s;
+}
+
+.task-form button[type="submit"]:hover {
+  background: #c43b4b;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .task-form button {
@@ -135,13 +194,6 @@ h1 {
   cursor: pointer;
   font-family: 'Oranienbaum', serif;
   font-size: 24px;
-}
-
-.hidden {
-  max-height: 0;
-  opacity: 0;
-  margin: 0;
-  padding: 0;
 }
 
 .toggle-form-button {

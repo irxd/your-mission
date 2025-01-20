@@ -5,6 +5,7 @@ class TaskManager {
         this.tasksContainer = document.getElementById('tasks-container');
         this.taskNumber = document.querySelector('.task-number');
         this.toggleButton = document.getElementById('toggle-form');
+        this.modalOverlay = document.querySelector('.modal-overlay');
         this.updateTaskNumber();
         this.setupEventListeners();
         this.renderTasks();
@@ -123,15 +124,33 @@ class TaskManager {
                 this.addTask(input.value.trim(), isMainCheckbox.checked);
                 input.value = '';
                 isMainCheckbox.checked = false;
+                this.toggleModal(false);
             }
         });
 
         this.toggleButton.addEventListener('click', () => {
-            this.form.classList.toggle('hidden');
-            this.toggleButton.textContent = this.form.classList.contains('hidden') 
-                ? '+ New Mission' 
-                : 'Close';
+            this.toggleModal(true);
         });
+
+        this.modalOverlay.addEventListener('click', (e) => {
+            if (e.target === this.modalOverlay) {
+                this.toggleModal(false);
+            }
+        });
+
+        // Add escape key handler
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.toggleModal(false);
+            }
+        });
+    }
+
+    toggleModal(show) {
+        this.modalOverlay.classList.toggle('visible', show);
+        if (show) {
+            document.getElementById('task-input').focus();
+        }
     }
 }
 

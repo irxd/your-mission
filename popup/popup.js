@@ -9,6 +9,7 @@ class TaskManager {
     this.updateTaskNumber();
     this.setupEventListeners();
     this.renderTasks();
+    this.draggedTask = null;
   }
 
   loadTasks() {
@@ -90,6 +91,13 @@ class TaskManager {
       const taskDiv = document.createElement('div');
       taskDiv.className = `secondary-task${task.completed ? ' completed' : ''}`;
       taskDiv.textContent = task.text;
+      taskDiv.draggable = true;
+      
+      // Add drag event listeners
+      taskDiv.addEventListener('dragstart', (e) => this.handleDragStart(e, index));
+      taskDiv.addEventListener('dragend', () => this.handleDragEnd());
+      taskDiv.addEventListener('dragover', (e) => this.handleDragOver(e, index));
+      taskDiv.addEventListener('drop', (e) => this.handleDrop(e, index));
       
       const deleteButton = document.createElement('button');
       deleteButton.className = 'delete-button';
@@ -105,6 +113,46 @@ class TaskManager {
       // Force reflow to trigger animation
       taskDiv.offsetHeight;
     });
+  }
+
+  handleDragStart(e, index) {
+    this.draggedTask = index;
+    e.target.classList.add('dragging');
+  }
+
+  handleDragEnd() {
+    const draggingElement = this.tasksContainer.querySelector('.dragging');
+    if (draggingElement) {
+      draggingElement.classList.remove('dragging');
+    }
+    this.draggedTask = null;
+    
+    // Remove all drag-over effects
+    this.tasksContainer.querySelectorAll('.drag-over').forEach(el => {
+      el.classList.remove('drag-over');
+    });
+  }
+
+  handleDragOver(e, index) {
+    e.preventDefault();
+    if (this.draggedTask === null || this.draggedTask === index) return;
+    
+    const elements = this.tasksContainer.querySelectorAll('.secondary-task');
+    elements.forEach(el => el.classList.remove('drag-over'));
+    elements[index].classList.add('drag-over');
+  }
+
+  handleDrop(e, index) {
+    e.preventDefault();
+    if (this.draggedTask === null || this.draggedTask === index) return;
+
+    // Reorder tasks
+    const tasks = this.tasks.secondaryTasks;
+    const [movedTask] = tasks.splice(this.draggedTask, 1);
+    tasks.splice(index, 0, movedTask);
+    
+    this.saveTasks();
+    this.renderTasks();
   }
 
   updateTaskNumber() {

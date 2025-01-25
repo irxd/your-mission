@@ -56,6 +56,20 @@ h1 {
   width: max-content;
   margin-left: auto;
   margin-top: 4px;
+  user-select: none;
+}
+
+.secondary-task.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.secondary-task:not(.dragging) {
+  cursor: grab;
+}
+
+.drag-over {
+  border-bottom: 2px solid #D84B5B;
 }
 
 .main-task.completed,

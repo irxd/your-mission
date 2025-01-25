@@ -149,7 +149,9 @@ class TaskManager {
   toggleModal(show) {
     this.modalOverlay.classList.toggle('visible', show);
     if (show) {
-      document.getElementById('task-input').focus();
+      setTimeout(() => {
+        document.getElementById('task-input').focus();
+      }, 100);
     }
   }
 }
